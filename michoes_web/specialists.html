@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michoes Medical Center - Our Specialists</title>
+  <!-- Bootstrap + icons + clean hospital blue palette -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --mmc-deep-blue: #0066CC;
+      --mmc-soft-bg: #e6f3ff;
+      --mmc-accent-cyan: #00a3cc;
+      --mmc-pale: #cce7ff;
+      --mmc-white: #ffffff;
+      --mmc-warm-offwhite: #f7fbfe;
+      --mmc-text-dark: #0a2a38;
+      --mmc-text-soft: #1f4a5c;
+      --mmc-shadow: 0 20px 30px -12px rgba(0, 102, 204, 0.12);
+    }
+    body {
+      background-color: var(--mmc-warm-offwhite);
+      color: var(--mmc-text-soft);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+    /* navbar identical to global */
+    .navbar {
+      background-color: var(--mmc-white) !important;
+      box-shadow: 0 6px 16px rgba(0, 102, 204, 0.05);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--mmc-deep-blue) !important;
+      font-size: 1.8rem;
+      letter-spacing: -0.4px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+      margin-right: 12px;
+    }
+    .nav-link {
+      color: var(--mmc-text-dark) !important;
+      font-weight: 500;
+      margin: 0 0.1rem;
+      transition: 0.2s;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--mmc-deep-blue) !important;
+      border-bottom: 2px solid var(--mmc-accent-cyan);
+    }
+    .btn-hospital {
+      background-color: var(--mmc-deep-blue);
+      border: none;
+      color: white;
+      border-radius: 40px;
+      padding: 0.45rem 1.9rem;
+      font-weight: 500;
+      box-shadow: 0 8px 14px rgba(0, 102, 204, 0.2);
+      transition: all 0.2s;
+    }
+    .btn-hospital:hover {
+      background-color: #0a3e55;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 22px rgba(0, 102, 204, 0.25);
+      color: white;
+    }
+    
+    /* page specific */
+    .specialists-hero {
+      background: linear-gradient(115deg, #ffffff 0%, #ebf6fc 80%);
+      padding: 3.5rem 0 3rem;
+      border-bottom: 1px solid var(--mmc-pale);
+    }
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--mmc-text-dark);
+      letter-spacing: -0.02em;
+    }
+    
+    /* specialist card */
+    .specialist-card {
+      background: var(--mmc-white);
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: var(--mmc-shadow);
+      border: 1px solid rgba(11, 79, 108, 0.08);
+      height: 100%;
+      transition: transform 0.25s ease;
+    }
+    .specialist-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 40px -16px rgba(0, 102, 204, 0.2);
+    }
+    .specialist-img {
+      height: 280px;
+      background-color: #bdd8e8;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .specialist-tag {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--mmc-deep-blue);
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .specialist-content {
+      padding: 1.8rem 1.8rem 2rem;
+    }
+    .specialist-content h3 {
+      font-weight: 700;
+      color: var(--mmc-text-dark);
+      margin-bottom: 0.3rem;
+    }
+    .specialist-title {
+      color: var(--mmc-accent-cyan);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .specialist-badge {
+      background-color: var(--mmc-soft-bg);
+      color: var(--mmc-deep-blue);
+      border-radius: 30px;
+      padding: 0.3rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+      margin: 0.2rem;
+    }
+    .credentials {
+      margin-top: 1rem;
+      border-top: 1px dashed var(--mmc-pale);
+      padding-top: 1rem;
+    }
+    .more-detail-link {
+      color: var(--mmc-deep-blue);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bio-extra {
+      display: none;
+      background: #eaf4fa;
+      border-radius: 24px;
+      padding: 1.2rem;
+      margin-top: 1.2rem;
+      border-left: 6px solid var(--mmc-deep-blue);
+    }
+    /* footer identical */
+    footer {
+      background: #0a2a38;
+      color: #c7dee9;
+    }
+    footer a {
+      color: #b6d3e2;
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    .footer-head {
+      color: white;
+      font-weight: 600;
+    }
+    .badge-footer {
+      background-color: #1c5f7a;
+      color: white;
+      border-radius: 30px;
+      padding: 0.3rem 1rem;
+    }
+    .dexstudio {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      letter-spacing: 0.3px;
+    }
+    .dexstudio i {
+      color: var(--mmc-accent-cyan);
+    }
+    .detail-extra {
+      display: none;
+      background: #1e4757;
+      border-radius: 20px;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- header with logo and active specialists -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white py-2">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="/img/logo.png" alt="Michoes Medical Center logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"> 
+        <span>Michoes Medical</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="specialists.html">Specialists</a></li>
+          <li class="nav-item"><a class="nav-link" href="facilities.html">Facilities</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <a href="appointment.html" class="btn btn-hospital btn-sm">Book online</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- specialists hero -->
+  <section class="specialists-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <span class="badge" style="background-color:var(--mmc-pale); color:var(--mmc-deep-blue); padding:0.6rem 1.8rem; border-radius:60px; font-weight:500; margin-bottom:1.5rem;"><i class="bi bi-person-badge me-2"></i>experienced consultants</span>
+          <h1 class="section-title">Meet our specialists</h1>
+          <p class="fs-5 mt-3" style="color:var(--mmc-text-dark);">Compassionate experts dedicated to your health. Each physician brings years of training and a personal commitment to Michoes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- specialists grid -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <!-- 1. Dr. Michael Ocen -->
+        <div class="col-md-6 col-lg-4">
+          <div class="specialist-card">
+            <div class="specialist-img" style="background-image: url('/img/img-13.jpg');">
+              <span class="specialist-tag">orthopaedics</span>
+            </div>
+            <div class="specialist-content">
+              <h3>Michael Ocen</h3>
+              <div class="specialist-title">MBChB, MMed (Ortho), Senior Consultant</div>
+              <div class="mb-2">
+                <span class="specialist-badge"><i class="bi bi-clock me-1"></i> 28+ years</span>
+                <span class="specialist-badge"><i class="bi bi-award me-1"></i> joint replacement</span>
+              </div>
+              <p class="small">Founder of Michoes, pioneer in trauma care in eastern Uganda. Trained at Makerere and University of Cape Town.</p>
+              <div class="credentials">
+                <span class="more-detail-link" data-target="bio1"><i class="bi bi-plus-circle"></i> full profile</span>
+                <div class="bio-extra" id="bio1">
+                  <strong>Special interests:</strong> complex fractures, paediatric orthopaedics, medical education. Past president Uganda Orthopaedic Association. Fluent in English and Ateso.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 2. Dr. Emmanuel Okiror -->
+        <div class="col-md-6 col-lg-4">
+          <div class="specialist-card">
+            <div class="specialist-img" style="background-image: url('/img/img-14.jpg');">
+              <span class="specialist-tag">general surgery</span>
+            </div>
+            <div class="specialist-content">
+              <h3>Emmanuel Okiror</h3>
+              <div class="specialist-title">MBChB, MMed (Surg), FCS (ECSA)</div>
+              <div class="mb-2">
+                <span class="specialist-badge"><i class="bi bi-clock me-1"></i> 16 years</span>
+                <span class="specialist-badge"><i class="bi bi-heart-pulse me-1"></i> trauma & acute care</span>
+              </div>
+              <p class="small">Head of surgery at Michoes. Expertise in emergency laparotomies, soft tissue reconstruction, and surgical mentorship.</p>
+              <div class="credentials">
+                <span class="more-detail-link" data-target="bio2"><i class="bi bi-plus-circle"></i> full profile</span>
+                <div class="bio-extra" id="bio2">
+                  <strong>Additional training:</strong> Advanced Trauma Life Support (ATLS) instructor, laparoscopic surgery (India). Leads the hospital's quality improvement committee.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 3. Dr. Grace Adongo (paediatrician) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="specialist-card">
+            <div class="specialist-img" style="background-image: url('/img/img-15.jpg');">
+              <span class="specialist-tag">paediatrics</span>
+            </div>
+            <div class="specialist-content">
+              <h3>Grace Adongo</h3>
+              <div class="specialist-title">MBChB, MMed (Paed), DCH</div>
+              <div class="mb-2">
+                <span class="specialist-badge"><i class="bi bi-clock me-1"></i> 14 years</span>
+                <span class="specialist-badge"><i class="bi bi-baby me-1"></i> neonatal care</span>
+              </div>
+              <p class="small">Director of maternal and child health. Established the neonatal unit and runs paediatric outreach clinics in Kumi and Soroti.</p>
+              <div class="credentials">
+                <span class="more-detail-link" data-target="bio3"><i class="bi bi-plus-circle"></i> full profile</span>
+                <div class="bio-extra" id="bio3">
+                  <strong>Fellowship</strong> in paediatric infectious diseases (RED-CENTRE). Leads the vaccination program and nutrition support for children.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 4. Dr. Sarah Akello (ob-gyn) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="specialist-card">
+            <div class="specialist-img" style="background-image: url('/img/img-16.jpg');">
+              <span class="specialist-tag">obstetrics & gynaecology</span>
+            </div>
+            <div class="specialist-content">
+              <h3>Sarah Akello</h3>
+              <div class="specialist-title">MBChB, MMed (OB/GYN)</div>
+              <div class="mb-2">
+                <span class="specialist-badge"><i class="bi bi-clock me-1"></i> 12 years</span>
+                <span class="specialist-badge"><i class="bi bi-heart me-1"></i> high-risk pregnancy</span>
+              </div>
+              <p class="small">Leads the maternity unit. Skilled in caesarean sections, obstetric fistula repair, and minimally invasive gynaecology.</p>
+              <div class="credentials">
+                <span class="more-detail-link" data-target="bio4"><i class="bi bi-plus-circle"></i> full profile</span>
+                <div class="bio-extra" id="bio4">
+                  <strong>Member</strong> of the Uganda Gynaecology Society. Trained in Kenya and Uganda. Advocate for maternal mental health.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 5. Dr. James Otim (internal medicine) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="specialist-card">
+            <div class="specialist-img" style="background-image: url('/img/img-17.jpg');">
+              <span class="specialist-tag">internal medicine</span>
+            </div>
+            <div class="specialist-content">
+              <h3>James Otim</h3>
+              <div class="specialist-title">MBChB, MMed (Internal Med), Cert. Cardiology</div>
+              <div class="mb-2">
+                <span class="specialist-badge"><i class="bi bi-clock me-1"></i> 11 years</span>
+                <span class="specialist-badge"><i class="bi bi-lungs me-1"></i> hypertension & diabetes</span>
+              </div>
+              <p class="small">Chief physician at Michoes. Runs the non-communicable disease clinic and cardiac outreach.</p>
+              <div class="credentials">
+                <span class="more-detail-link" data-target="bio5"><i class="bi bi-plus-circle"></i> full profile</span>
+                <div class="bio-extra" id="bio5">
+                  <strong>Research</strong> on cardiovascular risk in Teso region. Visiting lecturer at Soroti Nursing School. Fluent in Kumam and English.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 6. Dr. Betty Akurut (anaesthesiologist) -->
+        <div class="col-md-6 col-lg-4">
+          <div class="specialist-card">
+            <div class="specialist-img" style="background-image: url('/img/img-18.jpg');">
+              <span class="specialist-tag">anaesthesiology</span>
+            </div>
+            <div class="specialist-content">
+              <h3>Betty Akurut</h3>
+              <div class="specialist-title">MBChB, MMed (Anaes), Pain Management</div>
+              <div class="mb-2">
+                <span class="specialist-badge"><i class="bi bi-clock me-1"></i> 9 years</span>
+                <span class="specialist-badge"><i class="bi bi-shield-plus me-1"></i> critical care</span>
+              </div>
+              <p class="small">Head of anaesthesia and intensive care. Experienced in regional blocks, paediatric anaesthesia, and postoperative pain control.</p>
+              <div class="credentials">
+                <span class="more-detail-link" data-target="bio6"><i class="bi bi-plus-circle"></i> full profile</span>
+                <div class="bio-extra" id="bio6">
+                  <strong>Advanced training</strong> in critical care (South Africa). Leads the resuscitation team and teaches ACLS across the region.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- join our team callout (optional but unique) -->
+  <section class="py-5" style="background-color: var(--mmc-soft-bg);">
+    <div class="container text-center">
+      <h2 class="fw-bold" style="color: var(--mmc-text-dark);">Become part of our team</h2>
+      <p class="fs-5 col-lg-7 mx-auto my-3">Michoes welcomes specialist applications and visiting consultants. We support continuous learning and community impact.</p>
+      <a href="about.html" class="btn btn-hospital btn-lg px-5 py-3">View openings</a>
+    </div>
+  </section>
+
+  <!-- footer exactly as global, with updated links and dexstudios -->
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h4 class="footer-head">Michoes Medical Centre</h4>
+          <p class="text-secondary" style="color:#c0dae7 !important;">“Caring for Your Health with Compassion and Excellence.”</p>
+          <p>© 2025 Michoes Medical Centre<br>
+          Post Office: (P.O.) Box 22, Kanyum Kumi, Uganda - East Africa<br>
+          Tel: +256776312127, +2567785020499<br>
+          <span class="badge-footer mt-2 d-inline-block">Open 24/7</span></p>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-head">Who We Are</h6>
+          <ul class="list-unstyled">
+            <li><a href="about.html" class="text-decoration-none">About the Hospital</a></li>
+            <li><a href="specialists.html" class="text-decoration-none">Our Doctors and Staff</a></li>
+            <li><a href="about.html" class="text-decoration-none">Mission and Values</a></li>
+            <li><a href="about.html" class="text-decoration-none">Quality and Safety</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-head">What We Do</h6>
+          <ul class="list-unstyled">
+            <li><a href="services.html" class="text-decoration-none">Medical Services</a></li>
+            <li><a href="services.html" class="text-decoration-none">Emergency Care</a></li>
+            <li><a href="facilities.html" class="text-decoration-none">Diagnostic and Lab</a></li>
+            <li><a href="services.html" class="text-decoration-none">Preventive Care</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-head">Need Help?</h6>
+          <ul class="list-unstyled">
+            <li><a href="specialists.html" class="text-decoration-none">Find a Doctor</a></li>
+            <li><a href="appointment.html" class="text-decoration-none">Appointments</a></li>
+            <li><a href="about.html" class="text-decoration-none">Patient Resources</a></li>
+            <li><a href="about.html" class="text-decoration-none">Billing and Insurance</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2">
+          <h6 class="footer-head">Location</h6>
+          <p><i class="bi bi-geo-alt-fill me-1" style="color: var(--mmc-accent-cyan);"></i> Soroti East<br> <span class="more-detail-link" style="color:#b1d6ec;" id="showMapLinkFooter">(view map demo)</span></p>
+          <div class="detail-extra small p-2 bg-opacity-25" style="background:#193e4f; display:none;" id="mapFooterDemo"></div>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #1c5f7a;">
+      <div class="row text-secondary">
+        <div class="col-md-6 small">- 2025 Michoes Medical Center. All rights reserved.</div>
+        <div class="col-md-6 text-md-end small dexstudio">designed by dexstudios <i class="bi bi-brush"></i> <i class="bi bi-bootstrap"></i></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery + toggle scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.more-detail-link').click(function(e){
+        e.preventDefault();
+        var targetId = $(this).data('target');
+        $('#' + targetId).slideToggle(280);
+        var $icon = $(this).find('i');
+        if ($(this).html().includes('plus')) {
+          $(this).html($(this).html().replace('plus-circle', 'dash-circle'));
+        } else {
+          $(this).html($(this).html().replace('dash-circle', 'plus-circle'));
+        }
+      });
+
+      $('#showMapLinkFooter').click(function(e){
+        e.preventDefault();
+        $('#mapFooterDemo').slideToggle(200);
+      });
+    });
+  </script>
+</body>
+</html>
