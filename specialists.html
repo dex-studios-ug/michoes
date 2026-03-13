@@ -7,201 +7,7 @@
   <!-- Bootstrap + icons + clean hospital blue palette -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --mmc-deep-blue: #0066CC;
-      --mmc-soft-bg: #e6f3ff;
-      --mmc-accent-cyan: #00a3cc;
-      --mmc-pale: #cce7ff;
-      --mmc-white: #ffffff;
-      --mmc-warm-offwhite: #f7fbfe;
-      --mmc-text-dark: #0a2a38;
-      --mmc-text-soft: #1f4a5c;
-      --mmc-shadow: 0 20px 30px -12px rgba(0, 102, 204, 0.12);
-    }
-    body {
-      background-color: var(--mmc-warm-offwhite);
-      color: var(--mmc-text-soft);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      scroll-behavior: smooth;
-      line-height: 1.5;
-    }
-    /* navbar identical to global */
-    .navbar {
-      background-color: var(--mmc-white) !important;
-      box-shadow: 0 6px 16px rgba(0, 102, 204, 0.05);
-    }
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--mmc-deep-blue) !important;
-      font-size: 1.8rem;
-      letter-spacing: -0.4px;
-      display: flex;
-      align-items: center;
-    }
-    .navbar-brand img {
-      height: 50px;
-      width: auto;
-      margin-right: 12px;
-    }
-    .nav-link {
-      color: var(--mmc-text-dark) !important;
-      font-weight: 500;
-      margin: 0 0.1rem;
-      transition: 0.2s;
-    }
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--mmc-deep-blue) !important;
-      border-bottom: 2px solid var(--mmc-accent-cyan);
-    }
-    .btn-hospital {
-      background-color: var(--mmc-deep-blue);
-      border: none;
-      color: white;
-      border-radius: 40px;
-      padding: 0.45rem 1.9rem;
-      font-weight: 500;
-      box-shadow: 0 8px 14px rgba(0, 102, 204, 0.2);
-      transition: all 0.2s;
-    }
-    .btn-hospital:hover {
-      background-color: #0a3e55;
-      transform: translateY(-3px);
-      box-shadow: 0 14px 22px rgba(0, 102, 204, 0.25);
-      color: white;
-    }
-    
-    /* page specific */
-    .specialists-hero {
-      background: linear-gradient(115deg, #ffffff 0%, #ebf6fc 80%);
-      padding: 3.5rem 0 3rem;
-      border-bottom: 1px solid var(--mmc-pale);
-    }
-    .section-title {
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--mmc-text-dark);
-      letter-spacing: -0.02em;
-    }
-    
-    /* specialist card */
-    .specialist-card {
-      background: var(--mmc-white);
-      border-radius: 36px;
-      overflow: hidden;
-      box-shadow: var(--mmc-shadow);
-      border: 1px solid rgba(11, 79, 108, 0.08);
-      height: 100%;
-      transition: transform 0.25s ease;
-    }
-    .specialist-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 30px 40px -16px rgba(0, 102, 204, 0.2);
-    }
-    .specialist-img {
-      height: 280px;
-      background-color: #bdd8e8;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-    .specialist-tag {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: var(--mmc-deep-blue);
-      color: white;
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-    .specialist-content {
-      padding: 1.8rem 1.8rem 2rem;
-    }
-    .specialist-content h3 {
-      font-weight: 700;
-      color: var(--mmc-text-dark);
-      margin-bottom: 0.3rem;
-    }
-    .specialist-title {
-      color: var(--mmc-accent-cyan);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .specialist-badge {
-      background-color: var(--mmc-soft-bg);
-      color: var(--mmc-deep-blue);
-      border-radius: 30px;
-      padding: 0.3rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      display: inline-block;
-      margin: 0.2rem;
-    }
-    .credentials {
-      margin-top: 1rem;
-      border-top: 1px dashed var(--mmc-pale);
-      padding-top: 1rem;
-    }
-    .more-detail-link {
-      color: var(--mmc-deep-blue);
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .bio-extra {
-      display: none;
-      background: #eaf4fa;
-      border-radius: 24px;
-      padding: 1.2rem;
-      margin-top: 1.2rem;
-      border-left: 6px solid var(--mmc-deep-blue);
-    }
-    /* footer identical */
-    footer {
-      background: #0a2a38;
-      color: #c7dee9;
-    }
-    footer a {
-      color: #b6d3e2;
-      text-decoration: none;
-      transition: 0.2s;
-      font-size: 0.95rem;
-    }
-    footer a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-    .footer-head {
-      color: white;
-      font-weight: 600;
-    }
-    .badge-footer {
-      background-color: #1c5f7a;
-      color: white;
-      border-radius: 30px;
-      padding: 0.3rem 1rem;
-    }
-    .dexstudio {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      letter-spacing: 0.3px;
-    }
-    .dexstudio i {
-      color: var(--mmc-accent-cyan);
-    }
-    .detail-extra {
-      display: none;
-      background: #1e4757;
-      border-radius: 20px;
-      padding: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="css/michoes.css">
 </head>
 <body>
   <!-- header with logo and active specialists -->
@@ -209,9 +15,9 @@
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="/img/logo.png" alt="Michoes Medical Center logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"> 
-        <span>Michoes Medical</span>
+        <span>Michoes Medical Centre</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarMain">
@@ -234,7 +40,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto text-center">
-          <span class="badge" style="background-color:var(--mmc-pale); color:var(--mmc-deep-blue); padding:0.6rem 1.8rem; border-radius:60px; font-weight:500; margin-bottom:1.5rem;"><i class="bi bi-person-badge me-2"></i>experienced consultants</span>
+          <span class="badge-pill"><i class="bi bi-person-badge me-2"></i>experienced consultants</span>
           <h1 class="section-title">Meet our specialists</h1>
           <p class="fs-5 mt-3" style="color:var(--mmc-text-dark);">Compassionate experts dedicated to your health. Each physician brings years of training and a personal commitment to Michoes.</p>
         </div>
@@ -249,7 +55,7 @@
         <!-- 1. Dr. Michael Emusugut -->
         <div class="col-md-6 col-lg-4">
           <div class="specialist-card">
-            <div class="specialist-img" style="background-image: url('/img/logo.png');">
+            <div class="specialist-img" style="background-image: url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?q=80&w=553&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
               <span class="specialist-tag">orthopaedics</span>
             </div>
             <div class="specialist-content">
@@ -272,7 +78,7 @@
         <!-- 2. Dr. Nicholas Iyamitai -->
         <div class="col-md-6 col-lg-4">
           <div class="specialist-card">
-            <div class="specialist-img" style="background-image: url('/img/logo.png');">
+            <div class="specialist-img" style="background-image: url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?q=80&w=553&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
               <span class="specialist-tag">general surgery</span>
             </div>
             <div class="specialist-content">
@@ -295,7 +101,7 @@
         <!-- 3. Dr. Adoa Pious (paediatrician) -->
         <div class="col-md-6 col-lg-4">
           <div class="specialist-card">
-            <div class="specialist-img" style="background-image: url('/img/logo.png');">
+            <div class="specialist-img" style="background-image: url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?q=80&w=553&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
               <span class="specialist-tag">paediatrics</span>
             </div>
             <div class="specialist-content">
@@ -318,7 +124,7 @@
         <!-- 4. Dr. Susan Atai (ob-gyn) -->
         <div class="col-md-6 col-lg-4">
           <div class="specialist-card">
-            <div class="specialist-img" style="background-image: url('/img/logo.png');">
+            <div class="specialist-img" style="background-image: url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?q=80&w=553&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
               <span class="specialist-tag">obstetrics & gynaecology</span>
             </div>
             <div class="specialist-content">
@@ -341,7 +147,7 @@
         <!-- 5. Dr. James Otim (internal medicine) -->
         <div class="col-md-6 col-lg-4">
           <div class="specialist-card">
-            <div class="specialist-img" style="background-image: url('/img/logo.png');">
+            <div class="specialist-img" style="background-image: url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?q=80&w=553&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
               <span class="specialist-tag">internal medicine</span>
             </div>
             <div class="specialist-content">
@@ -364,7 +170,7 @@
         <!-- 6. Dr. Betty Akurut (anaesthesiologist) -->
         <div class="col-md-6 col-lg-4">
           <div class="specialist-card">
-            <div class="specialist-img" style="background-image: url('/img/logo.png');">
+            <div class="specialist-img" style="background-image: url('https://images.unsplash.com/photo-1643297654416-05795d62e39c?q=80&w=553&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
               <span class="specialist-tag">anaesthesiology</span>
             </div>
             <div class="specialist-content">
@@ -389,9 +195,9 @@
   </section>
 
   <!-- join our team callout (optional but unique) -->
-  <section class="py-5" style="background-color: var(--mmc-soft-bg);">
+  <section class="py-5 cta-strip-soft">
     <div class="container text-center">
-      <h2 class="fw-bold" style="color: var(--mmc-text-dark);">Become part of our team</h2>
+      <h2 class="fw-bold">Become part of our team</h2>
       <p class="fs-5 col-lg-7 mx-auto my-3">Michoes welcomes specialist applications and visiting consultants. We support continuous learning and community impact.</p>
       <a href="about.html" class="btn btn-hospital btn-lg px-5 py-3">View openings</a>
     </div>
