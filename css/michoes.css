@@ -173,6 +173,13 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.08);
   height: 100%;
   transition: all 0.25s;
+  overflow: hidden;
+}
+.specialist-card,
+.facility-block {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 .feature-card-mmc:hover,
 .leadership-card:hover,
@@ -264,6 +271,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 36px 36px 0 0;
 }
 .specialist-img {
   height: 280px;
@@ -285,11 +296,16 @@ body {
 
 .facility-content {
   padding: 1.8rem 2rem 2rem;
+  flex-grow: 1;
 }
 .facility-content h4 {
   font-weight: 650;
   color: var(--mmc-on-surface);
   margin-bottom: 0.75rem;
+}
+.specialist-content {
+  padding: 2rem 1.8rem;
+  flex-grow: 1;
 }
 
 .more-detail-link {
